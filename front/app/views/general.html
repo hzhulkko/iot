@@ -1,0 +1,104 @@
+<div style="position: absolute; top: -3em; right: 2em">
+  <ul class="nav nav-pills" id="paddingBottom">
+    <li ng-repeat="main in mainunit" ng-init="valittu(mainunit[0]._id)" role="presentation" ng-class="main.active">
+      <a ng-click="valittu(main._id)"> {{main.description}} </a>
+    </li>
+  </ul>
+</div>
+
+<div class="col-md-5">
+ <div  ng-if="unit" class="panel panel-default">
+   <div class="panel-heading">
+     <h3 class="panel-title">
+       {{ 'MAIN_INFO_TITLE' | translate }}
+     </h3>
+
+     <div class="clearfix"></div>
+   </div>
+
+   <div class="container col-md-12">
+     <label>{{ 'WATER_LEVEL' | translate }}</label>
+     <div class="progress">
+       <div class="progress-bar" role="progressbar" aria-valuenow="{{ waterLevel }}" aria-valuemin="0" aria-valuemax="100" 
+            style="{{'width:' + waterLevel + '%; background-color: rgb(' + (255 - colorPicker(waterLevel)) + ', ' + colorPicker(waterLevel) + ', 0)'}}">
+         {{ waterLevel }} %
+       </div>
+     </div>
+     <label>{{ 'NUTRIENT_LEVEL' | translate }}</label>
+     <div class="progress">
+       <div class="progress-bar" role="progressbar" aria-valuenow="{{ nutrientLevel }}" aria-valuemin="0" aria-valuemax="100" style="{{'width:' + nutrientLevel + '%; background-color: rgb(' + (255 - colorPicker(nutrientLevel)) + ', ' + colorPicker(nutrientLevel) + ', 0)'}}">
+         {{ nutrientLevel }} %
+       </div>
+     </div>
+   </div>   
+
+   <div class="panel-body">
+     <div class="container col-md-12">
+       <canvas  id="bar" class="chart chart-bar"
+       data="tieto"
+       labels="otsikko"
+       series="sarja"
+       legend="true"
+       height="290"
+       >
+     </canvas>
+
+   </div>
+   <div class="container col-md-5">
+     <table class="table" id="bottom">
+       <tr><td><h5>{{ 'MODULE' | translate }}</h5></td><td><h5>{{ 'HEIGHT' | translate }}</h5></td><td><h5>{{ 'HUMIDITY' | translate }}</h5></td><td><h5>{{ 'TEMPERATURE' | translate }}</h5></td></tr>
+       <tr ng-repeat="kentta in table">
+         <td>
+           {{ kentta.module }}
+         </td>
+         <td>
+           {{ kentta.data.height }}
+         </td>
+         <td>
+           {{ kentta.data.humidity }}
+         </td>
+         <td>
+           {{ kentta.data.temperature }}
+         </td>
+       </tr>
+     </table>
+   </div>
+
+ </div>
+</div>
+</div>
+
+<div class="col-md-7">
+  <div ng-if="unit" class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        {{ 'CHARTS_TITLE' | translate }}
+      </h3>
+
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="panel-body">
+      <canvas id="line" height="75" class="chart chart-line" data="data"
+      labels="labels" legend="true" series="series"
+      click="onClick">
+    </canvas>
+
+    <canvas id="line" height="75" class="chart chart-line" data="data"
+    labels="labels" legend="true" series="series"
+    click="onClick">
+  </canvas>
+
+  <canvas id="line" height="75" class="chart chart-line" data="data"
+  labels="labels" legend="true" series="series"
+  click="onClick">
+</canvas>
+
+<canvas id="line" height="75" class="chart chart-line" data="data"
+labels="labels" legend="true" series="series"
+click="onClick">
+</canvas>
+</div>
+</div>
+
+</div>
